@@ -5,7 +5,8 @@ import Track from '../Track/Track';
 class TrackList extends Component {
   render() {
     return (
-      <div class="TrackList">
+      <div className="TrackList">
+        <Track />
         <Track />
       </div>
     );

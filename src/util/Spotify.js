@@ -1,1 +1,3 @@
-const clientID = ''
+const Spotify = {};
+
+export default Spotify;
