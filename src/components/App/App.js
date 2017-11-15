@@ -6,15 +6,44 @@ import Playlist from '../Playlist/Playlist';
 import Spotify from '../../util/Spotify';
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      searchResults: [{
+        name: 'name1',
+        artist: 'artist1',
+        album:'album1'
+      },
+      {
+        name: 'name2',
+        artist: 'artist2',
+        album: 'album2'
+      }],
+
+      playlistTracks: [{
+        name: 'PLname1',
+        artist: 'PLartist1',
+        album:'PLalbum1'
+      },
+      {
+        name: 'PLname2',
+        artist: 'PLartist2',
+        album: 'PLalbum2'
+      }]
+    };
+  }
+
   render() {
+    this.state.searchResults.map(track => console.log(track));
     return (
       <div>
         <h1>Ja<span className="highlight">mmm</span>ing</h1>
         <div className="App">
           <SearchBar />
           <div className="App-playlist">
-            <SearchResults />
-            <Playlist />
+            <SearchResults searchResults={this.state.searchResults} />
+            <Playlist playlistTracks={this.state.playlistTracks} />
           </div>
         </div>
       </div>

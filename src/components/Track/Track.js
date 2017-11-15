@@ -4,12 +4,12 @@ import './Track.css';
 class Track extends Component {
   render() {
     return (
-      <div class="Track">
-        <div class="Track-information">
-          <h3>Track Name</h3>
-          <p>Artist | Album</p>
+      <div className="Track">
+        <div className="Track-information">
+          <h3>{this.props.track.name}</h3>
+          <p>{this.props.track.artist} | {this.props.track.album}</p>
         </div>
-        <a class="Track-action">-</a>
+        <a className="Track-action">-</a>
       </div>
     );
   }
