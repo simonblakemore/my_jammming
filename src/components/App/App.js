@@ -44,6 +44,7 @@ class App extends Component {
     this.updatePlaylistName = this.updatePlaylistName.bind(this);
     this.search = this.search.bind(this);
     this.savePlaylist = this.savePlaylist.bind(this);
+    this.getAccessToken = this.getAccessToken.bind(this);
   }
 
   addTrack(track) {
@@ -80,11 +81,17 @@ class App extends Component {
       console.log(track.name);
       console.log(`${track.artist} | ${track.album}`);
       console.log(`-----------------------`);
+      return {};
     })
   }
 
   search(term) {
     console.log(term);
+  }
+
+  getAccessToken() {
+    const myAccessToken = Spotify.getAccessToken();
+    console.log(myAccessToken);
   }
 
   render() {
@@ -93,6 +100,7 @@ class App extends Component {
         <h1>Ja<span className="highlight">mmm</span>ing</h1>
         <div className="App">
           <SearchBar onSearch={this.search} />
+          <button onClick={this.getAccessToken}>Get Access Token!</button>
           <div className="App-playlist">
             <SearchResults
               searchResults={this.state.searchResults}
