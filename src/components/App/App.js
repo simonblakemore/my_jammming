@@ -43,6 +43,7 @@ class App extends Component {
     this.removeTrack = this.removeTrack.bind(this);
     this.updatePlaylistName = this.updatePlaylistName.bind(this);
     this.search = this.search.bind(this);
+    this.savePlaylist = this.savePlaylist.bind(this);
   }
 
   addTrack(track) {
@@ -73,6 +74,15 @@ class App extends Component {
     this.setState({playlistName: name});
   }
 
+  savePlaylist() {
+    console.log(this.state.playlistName);
+    this.state.playlistTracks.map(track => {
+      console.log(track.name);
+      console.log(`${track.artist} | ${track.album}`);
+      console.log(`-----------------------`);
+    })
+  }
+
   search(term) {
     console.log(term);
   }
@@ -93,6 +103,7 @@ class App extends Component {
               playlistTracks={this.state.playlistTracks}
               onRemove={this.removeTrack}
               onNameChange={this.updatePlaylistName}
+              onSave={this.savePlaylist}
             />
           </div>
         </div>

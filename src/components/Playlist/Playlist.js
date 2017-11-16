@@ -14,7 +14,6 @@ class Playlist extends Component {
   }
 
   render() {
-    console.log(this.props.playlistName);
     return (
         <div className='Playlist'>
           <input
@@ -25,7 +24,7 @@ class Playlist extends Component {
             tracks={this.props.playlistTracks}
             isRemoval={true}
             onRemove={this.props.onRemove} />
-          <a className="Playlist-save">SAVE TO SPOTIFY</a>
+          <a className="Playlist-save" onClick={this.props.onSave}>SAVE TO SPOTIFY</a>
       </div>
     );
   }
