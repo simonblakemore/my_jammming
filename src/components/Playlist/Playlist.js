@@ -21,7 +21,8 @@ class Playlist extends Component {
             defaultValue={this.props.playlistName}
             onChange={this.handleNameChange}
           />
-          <TrackList tracks={this.props.playlistTracks}
+          <TrackList
+            tracks={this.props.playlistTracks}
             isRemoval={true}
             onRemove={this.props.onRemove} />
           <a className="Playlist-save">SAVE TO SPOTIFY</a>
