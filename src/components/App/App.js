@@ -10,31 +10,9 @@ class App extends Component {
     super(props);
 
     this.state = {
-      searchResults: [{
-        id: '001',
-        name: 'name1',
-        artist: 'artist1',
-        album:'album1'
-      },
-      {
-        id: '002',
-        name: 'name2',
-        artist: 'artist2',
-        album: 'album2'
-      }],
+      searchResults: [],
 
-      playlistTracks: [{
-        id: '003',
-        name: 'PLname1',
-        artist: 'PLartist1',
-        album:'PLalbum1'
-      },
-      {
-        id: '004',
-        name: 'PLname2',
-        artist: 'PLartist2',
-        album: 'PLalbum2'
-      }],
+      playlistTracks: [],
 
       playlistName: 'New Playlist'
     };
@@ -44,7 +22,6 @@ class App extends Component {
     this.updatePlaylistName = this.updatePlaylistName.bind(this);
     this.search = this.search.bind(this);
     this.savePlaylist = this.savePlaylist.bind(this);
-    this.getAccessToken = this.getAccessToken.bind(this);
   }
 
   addTrack(track) {
@@ -86,12 +63,9 @@ class App extends Component {
   }
 
   search(term) {
-    console.log(term);
-  }
-
-  getAccessToken() {
-    const myAccessToken = Spotify.getAccessToken();
-    console.log(myAccessToken);
+    Spotify.search(term).then(searchResults => {
+      this.setState({searchResults: searchResults});
+    });
   }
 
   render() {
@@ -100,7 +74,6 @@ class App extends Component {
         <h1>Ja<span className="highlight">mmm</span>ing</h1>
         <div className="App">
           <SearchBar onSearch={this.search} />
-          <button onClick={this.getAccessToken}>Get Access Token!</button>
           <div className="App-playlist">
             <SearchResults
               searchResults={this.state.searchResults}
