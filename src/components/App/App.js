@@ -25,27 +25,19 @@ class App extends Component {
   }
 
   addTrack(track) {
-    let tracks = this.state.playlistTracks;
-    let match = false;
-
-    tracks.forEach(playlistTrack => {
-      if(playlistTrack.id === track.id) {
-        match = true;
-      }
-    });
-
-    if (!match) {
+    if(this.state.playlistTracks.every(item => item.id !== track.id)) {
+      var tracks = this.state.playlistTracks;
       tracks.push(track);
-      this.setState({playlistTracks: tracks});
+      this.setState( {
+        "playlistTracks": tracks
+      });
     }
   }
 
   removeTrack(track) {
-    let oldPlaylist = this.state.playlistTracks;
-
-    const newPlaylist = oldPlaylist.filter(playlistTrack => playlistTrack.id !== track.id);
-
-    this.setState({playlistTracks: newPlaylist});
+    this.setState( {
+      "playlistTracks" : this.state.playlistTracks.filter(item => item.id !== track.id)
+    });
   }
 
   updatePlaylistName(name) {
