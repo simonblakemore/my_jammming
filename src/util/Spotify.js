@@ -1,5 +1,5 @@
 const clientID = '1f0b3de4d6624e018cc234385e6f1798';
-const redirectURI = 'http://simonjam.surge.sh';
+const redirectURI = 'http://localhost:3000/';
 
 let accessToken;
 
