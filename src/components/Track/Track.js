@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './Track.css';
+import AudioPlayer from '../AudioPlayer/AudioPlayer';
 
 class Track extends Component {
   constructor(props) {
@@ -31,6 +32,10 @@ class Track extends Component {
         <div className="Track-information">
           <h3>{this.props.track.name}</h3>
           <p>{this.props.track.artist} | {this.props.track.album}</p>
+          <AudioPlayer
+            previewUrl={this.props.track.previewUrl}
+            id={this.props.track.id}
+            />
         </div>
           {this.renderAction()}
       </div>
