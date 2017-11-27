@@ -1,0 +1,24 @@
+.Preview-action {
+  cursor: pointer;
+  transition: color .25s;
+}
+
+.Preview-action:hover {
+  color: rgba(265, 265, 265, .5);
+}
+
+.Preview i {
+  font-size: 1em;
+  position: relative;
+  top: .17em;
+}
+
+.Preview-action i {
+  margin-left: -.3em;
+  margin-right: -.16em;
+  font-size: 1.2em;
+}
+
+.No-preview {
+    color: rgba(265, 265, 265, .5);
+}

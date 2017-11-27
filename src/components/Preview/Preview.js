@@ -1,49 +1,58 @@
 import React, { Component } from 'react';
 import './Preview.css';
-import AudioPlayer from '../AudioPlayer/AudioPlayer';
 
 class Preview extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      playPreview: false,
+      showPlayPreview: true
     };
 
     this.handleClick = this.handleClick.bind(this);
   }
 
   handleClick() {
-    let x = this.state.playPreview ? false : true;
-
-    this.setState({
-      playPreview: x
-    })
-  }
+    if (this.state.showPlayPreview === true) {
+      this.props.playPreview(this.props.previewUrl);
+      this.setState({showPlayPreview: false});
+    } else {
+      this.props.playPreview(null);
+      this.setState({showPlayPreview: true});
+    }
+}
 
 
   render() {
-    console.log(this.props.previewUrl);
+    if (this.state.showPlayPreview === false && this.props.previewUrl !== this.props.currentlyPlaying) {
+      this.setState({showPlayPreview: true});
+    }
+
+    if (this.state.showPlayPreview === true && this.props.previewUrl === this.props.currentlyPlaying) {
+      this.setState({showPlayPreview: false});
+    }
 
     if (this.props.previewUrl === null) {
       return (
-        <p className="noPreview">&#9658; No Preview Available</p>
+        <div className='Preview'>
+          <a className='No-preview'><i className="material-icons">do_not_disturb_on</i> No Preview Available</a>
+        </div>
       );
     }
 
-    if (this.state.playPreview === true) {
+    if (this.state.showPlayPreview === false) {
       return (
-        <div>
-          <AudioPlayer previewUrl={this.props.previewUrl}/>
-          <button onClick={this.handleClick}>Stop Preview</button>
+        <div className='Preview'>
+          <a className='Preview-action' onClick={this.handleClick}><i className="material-icons">stop</i> Stop Preview</a>
         </div>
       );
     }
 
     return (
-      <div>
-      <button onClick={this.handleClick}>Play Preview</button>
+      <div className='Preview'>
+        <a className='Preview-action' onClick={this.handleClick}><i className="material-icons">play_arrow</i> Play Preview</a>
       </div>
+
     )
   }
 }

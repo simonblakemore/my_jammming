@@ -14,6 +14,8 @@ class TrackList extends Component {
                 isRemoval={this.props.isRemoval}
                 onAdd={this.props.onAdd}
                 onRemove={this.props.onRemove}
+                playPreview={this.props.playPreview}
+                currentlyPlaying={this.props.currentlyPlaying}
               />
             );
           })

@@ -4,6 +4,7 @@ import SearchBar from '../SearchBar/SearchBar';
 import SearchResults from '../SearchResults/SearchResults';
 import Playlist from '../Playlist/Playlist';
 import Spotify from '../../util/Spotify';
+import AudioPlayer from '../AudioPlayer/AudioPlayer';
 
 class App extends Component {
   constructor(props) {
@@ -14,7 +15,9 @@ class App extends Component {
 
       playlistTracks: [],
 
-      playlistName: 'New Playlist'
+      playlistName: 'New Playlist',
+
+      previewUrl: null
     };
 
     this.addTrack = this.addTrack.bind(this);
@@ -22,6 +25,16 @@ class App extends Component {
     this.updatePlaylistName = this.updatePlaylistName.bind(this);
     this.search = this.search.bind(this);
     this.savePlaylist = this.savePlaylist.bind(this);
+    this.playPreview = this.playPreview.bind(this);
+    this.endOfAudio = this.endOfAudio.bind(this);
+  }
+
+  playPreview(previewUrl) {
+    this.setState({previewUrl: previewUrl});
+  }
+
+  endOfAudio() {
+    this.playPreview(null);
   }
 
   addTrack(track) {
@@ -35,6 +48,9 @@ class App extends Component {
   }
 
   removeTrack(track) {
+    if (track.previewUrl === this.state.previewUrl) {
+      this.setState({previewUrl: null});
+    }
     this.setState( {
       "playlistTracks" : this.state.playlistTracks.filter(item => item.id !== track.id)
     });
@@ -68,6 +84,10 @@ class App extends Component {
   render() {
     return (
       <div>
+        <AudioPlayer
+          previewUrl={this.state.previewUrl}
+          onEnd={this.endOfAudio}
+        />
         <h1>Ja<span className="highlight">mmm</span>ing</h1>
         <div className="App">
           <SearchBar onSearch={this.search} />
@@ -75,6 +95,8 @@ class App extends Component {
             <SearchResults
               searchResults={this.state.searchResults}
               onAdd={this.addTrack}
+              playPreview={this.playPreview}
+              currentlyPlaying={this.state.previewUrl}
             />
             <Playlist
               playlistName={this.state.playlistName}
@@ -82,6 +104,8 @@ class App extends Component {
               onRemove={this.removeTrack}
               onNameChange={this.updatePlaylistName}
               onSave={this.savePlaylist}
+              playPreview={this.playPreview}
+              currentlyPlaying={this.state.previewUrl}
             />
           </div>
         </div>

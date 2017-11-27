@@ -11,6 +11,8 @@ class SearchResults extends Component {
           tracks={this.props.searchResults}
           isRemoval={false}
           onAdd={this.props.onAdd}
+          playPreview={this.props.playPreview}
+          currentlyPlaying={this.props.currentlyPlaying}
         />
       </div>
     );

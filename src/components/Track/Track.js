@@ -35,7 +35,9 @@ class Track extends Component {
           <Preview
             previewUrl={this.props.track.previewUrl}
             id={this.props.track.id}
-            />
+            playPreview={this.props.playPreview}
+            currentlyPlaying={this.props.currentlyPlaying}
+          />
         </div>
           {this.renderAction()}
       </div>
